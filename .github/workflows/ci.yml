@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: PR Verify
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0
+
+      - name: dotnet test
+        run: dotnet test --configuration Release
+         
+      - name: dotnet publish
+        run: dotnet publish src/GitHubCationsDotNet.Api/GitHubCationsDotNet.Api.csproj --configuration Release -o artifacts
+
+      
