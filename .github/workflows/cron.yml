@@ -2,7 +2,7 @@ name: Run every 5 minute
 
 on:
   schedule:
-    - cron: '/5 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   cron:
