@@ -36,14 +36,16 @@ jobs:
   deploy_dev:
     name: Deploy Dev
     needs: build
-    uses: ./github/workflows/step-deploy.yml
+    uses: ./.github/workflows/step-deploy.yml
     with:
       env: dev
+    secrets: inherit
 
   deploy_prod:
     name: Deploy Prod
-    needs: build
-    uses: ./github/workflows/step-deploy.yml
+    needs: deploy_dev
+    uses: ./.github/workflows/step-deploy.yml
     with:
       env: prod
+    secrets: inherit
     
